@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Login - Tienda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        background: linear-gradient(135deg, #f9f5f0  0%, #2575fc 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .login-container {
+        background: #fff;
+        padding: 2.5rem 3rem;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+        width: 100%;
+        max-width: 400px;
+      }
+      .login-container h2 {
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: #2575fc;
+        text-align: center;
+      }
+      .form-label {
+        font-weight: 600;
+      }
+      .btn-primary {
+        background: #2575fc;
+        border: none;
+        font-weight: 600;
+      }
+      .btn-primary:hover {
+        background: #1a56d0;
+      }
+      .alert-danger {
+        font-weight: 600;
+      }
+    </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form method="post" autocomplete="off" novalidate>
+      <div class="mb-3">
+        <label for="username" class="form-label">Usuario</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username"
+          name="username"
+          placeholder="Ingrese su usuario"
+          required
+          autofocus
+        />
+      </div>
+      <div class="mb-4">
+        <label for="password" class="form-label">Contraseña</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Ingrese su contraseña"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+    </form>
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="alert alert-danger mt-3 text-center" role="alert">
+          {{ messages[0] }}
+        </div>
+      {% endif %}
+    {% endwith %}
+  </div>
+</body>
+</html>
